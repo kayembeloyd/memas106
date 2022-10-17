@@ -1,11 +1,8 @@
 <?php 
 
-
-
 include "route.php";
 
-
-
+include "controllers/EquipmentsController.php";
 
 
 /**
@@ -14,36 +11,39 @@ include "route.php";
  * -----------------------------------------------
  */
 
-//define your route. This is main page route. for example www.example.com
-Route::add('/', function(){
+switch($_SERVER['REQUEST_METHOD']){
+    case 'GET':
+        Route::add('/', function(){
+            echo('myindex.php');
+        });
+        
+        Route::add('/equipments', function() {
+            EquipmentsController::index();
+        });
+        
+        Route::add('/equipments/.+/technical_specifications/.+/show', function($id1, $id2) {
+            echo ($id1 . '</br>');
+            echo ($id2 . '</br>');
+            EquipmentsController::showTest();
+        });
+        
+        Route::add('/equipments/.+', function($id) {
+            EquipmentsController::show($id);
+        });
 
-    //define which page you want to display while user hit main page. 
-    echo('myindex.php');
-});
+        break;
+    case 'POST':
+        Route::add('/equipments', function() {
+            EquipmentsController::create();
+        });
 
-
-// route for www.example.com/join
-Route::add('/join', function(){
-    echo('join.php');
-});
-
-Route::add('/login', function(){
-    echo('login.php');
-});
-
-Route::add('/forget', function(){
-    echo('forget.php');
-});
-
-
-
-Route::add('/logout', function(){
-    echo('logout.php');
-});
-
-
-
-
+        break;
+    case 'UPDATE':
+        // all the UPDATE routes
+        break;
+    default:
+        echo 'unsupported method';
+}
 
 //method for execution routes    
 Route::submit();

@@ -54,7 +54,7 @@ class Route
         * List through the stored URI's
         */
         foreach (self::$_listUri as $listKey => $listUri)
-        {
+        {   
             /**
             * See if there is a match
             */
@@ -81,8 +81,8 @@ class Route
                 * Pass an array for arguments
                 */
                 call_user_func_array(self::$_listCall[$listKey], $replacementValues);
+                break;
             }
-
         }
 
     }
