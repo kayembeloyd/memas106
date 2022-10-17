@@ -1,6 +1,7 @@
 <?php
 /**
  * @author      Jesse Boyer <contact@jream.com>
+ * @Modified by Lloyd Kayembe <kayembeloyd@gmail.com>
  * @copyright   Copyright (C), 2011-12 Jesse Boyer
  * @license     GNU General Public License 3 (http://www.gnu.org/licenses/)
  *              Refer to the LICENSE file distributed within the package.
@@ -81,6 +82,8 @@ class Route
                 * Pass an array for arguments
                 */
                 call_user_func_array(self::$_listCall[$listKey], $replacementValues);
+
+                // Added break
                 break;
             }
         }
