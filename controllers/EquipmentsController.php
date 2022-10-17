@@ -1,6 +1,7 @@
 <?php
 
 include "models/Equipment.php";
+include "database/database.php";
 
 class EquipmentsController {
     static function index(){
@@ -11,7 +12,8 @@ class EquipmentsController {
     }
 
     static function show($id){
-        echo ('Showing equipment ' . $id);
+        echo ('Showing equipment ' . $id . '</br>');
+        echo 'Database::checkConnection() = ' . Database::checkConnection();
     }
 
     static function create(){
@@ -19,6 +21,6 @@ class EquipmentsController {
     }
 
     static function showTest(){
-        
+
     }
 }
