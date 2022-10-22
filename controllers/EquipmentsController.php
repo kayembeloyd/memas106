@@ -1,19 +1,20 @@
 <?php
 
 include "models/Equipment.php";
-include "database/database.php";
+// include "database/database.php";
 
 class EquipmentsController {
     static function index(){
-        $equipment = Equipment::get();
-        $equipment->name = "Equipment 1";
-        
-        echo ('$equipment->name = ' . $equipment->name);
+        $equipments = Equipment::get('all');
     }
 
     static function show($id){
-        echo ('Showing equipment ' . $id . '</br>');
-        echo 'Database::checkConnection() = ' . Database::checkConnection();
+        $equipments = Equipment::get($id);
+
+        while ($obj = mysqli_fetch_object($equipments)) {
+            echo '$obj->name = '. $obj->name;
+        }
+        // echo 'Database::checkConnection() = ' . Database::checkConnection();
     }
 
     static function create(){

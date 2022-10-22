@@ -4,6 +4,7 @@ include "route.php";
 
 include "controllers/EquipmentsController.php";
 
+include "database/migration.php";
 
 /**
  * -----------------------------------------------
@@ -16,19 +17,13 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/', function(){
             echo('myindex.php');
         });
-        
-        Route::add('/equipments', function() {
-            EquipmentsController::index();
-        });
-        
-        Route::add('/equipments/.+/technical_specifications/.+/show', function($id1, $id2) {
-            echo ($id1 . '</br>');
-            echo ($id2 . '</br>');
-            EquipmentsController::showTest();
-        });
-        
+
         Route::add('/equipments/.+', function($id) {
             EquipmentsController::show($id);
+        });
+
+        Route::add('/equipments', function() {
+            EquipmentsController::index();
         });
 
         break;
@@ -38,8 +33,13 @@ switch($_SERVER['REQUEST_METHOD']){
         });
 
         break;
-    case 'UPDATE':
+    case 'PUT':
         // all the UPDATE routes
+        Route::add('/migrate', function() {
+            echo ("Step 1 </br>");
+            Migration::runMigration();
+        });
+
         break;
     default:
         echo 'unsupported method';
