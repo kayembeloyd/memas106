@@ -20,13 +20,9 @@ class Database {
     }
 
     public static function execute($sql_statement){
-        echo ("Step 5 </br>");
-
         // Make connection 
         $conn = new mysqli(self::$servername, self::$username, self::$password);
         
-        echo ("Step 6 </br>");
-
         // Check connection
         if ($conn->connect_error) {
             return ($conn->connect_error);
@@ -34,16 +30,12 @@ class Database {
 
         $results = $conn->query($sql_statement);
 
-        echo ("Step 7 </br>");
-
         $conn->close();
 
         return $results;
     }
 
     public static function migrate(){
-        echo ("Step 2 </br>");
-
         Migration::runMigration();
     }
 }

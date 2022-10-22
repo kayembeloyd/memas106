@@ -26,8 +26,6 @@ class Migration {
     }
 
     public static function runMigration(){
-        echo ("Step 3 </br>");
-
         self::createEquipmentsTable();
     }
 
