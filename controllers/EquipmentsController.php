@@ -24,21 +24,15 @@ class EquipmentsController {
 
     static function create(){
         // Get info 
-        $id = isset($_POST['id']) ? $_POST['id'] : 0 ;
-        $name = isset($_POST['name']) ? $_POST['name'] : '';
-        $technicalSpecification = isset($_POST['technical_specification']) ? $_POST['technical_specification'] : '';
+        $fields = array();
 
-        $myResponse = array();
+        $fields['id'] = isset($_POST['id']) ? $_POST['id'] : 0 ;
+        $fields['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+        $fields['technical_specification'] = isset($_POST['technical_specification']) ? $_POST['technical_specification'] : '';
 
-        $myResponse['id'] = $id;
-        $myResponse['name'] = $name;
-        $myResponse['technical_specification'] = $technicalSpecification;
+        $status = Equipment::create($fields);
 
-        echo(json_encode($myResponse));
-
-        // echo ('creating...');
-        
-        // echo ($_POST['test']);
+        echo($status ? 'successfull' : 'failed');
     }
 
     static function update(){
