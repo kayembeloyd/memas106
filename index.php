@@ -1,10 +1,10 @@
 <?php 
 
-include "route.php";
+include_once "route.php";
 
-include "controllers/EquipmentsController.php";
+include_once "controllers/EquipmentsController.php";
 
-include "database/migration.php";
+include_once "database/migration.php";
 
 /**
  * -----------------------------------------------
@@ -31,12 +31,12 @@ switch($_SERVER['REQUEST_METHOD']){
         // Adds one equipment to online database
         Route::add('/equipments', function() { EquipmentsController::create(); });
 
-        break;
-    case 'PUT':
-
+        
         // Synchronizes the local and online database
-        /* It receives equipments that needs to be updated downwards or upwards */
-        Route::add('/equipments', function() { EquipmentsController::update(); });
+        /* It receives equipments that needs to be updated downwards or upwards 
+            it will only return equipments that needs to be updated in the local database
+        */
+        Route::add('/equipments/update', function() { EquipmentsController::update(); });
 
         // Temporary
         // Creates tables in the online database

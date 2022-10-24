@@ -1,6 +1,6 @@
 <?php
 
-include "models/Equipment.php";
+include_once "models/Equipment.php";
 // include "database/database.php";
 
 class EquipmentsController {
