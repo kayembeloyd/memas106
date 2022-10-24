@@ -5,8 +5,16 @@ include_once "models/Equipment.php";
 
 class EquipmentsController {
     static function index(){
-        echo ('showing equipments...');
+        $equipments = Equipment::all();
 
+        $equipmentsArray = array();
+        
+        while($obj = mysqli_fetch_object($equipments)){
+            array_push($equipmentsArray, $obj);
+        }
+
+        echo json_encode($equipmentsArray);
+        
         // $equipments = Equipment::get('all');
     }
 

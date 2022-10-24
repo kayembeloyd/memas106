@@ -21,21 +21,15 @@ class Equipment {
         return $sqlResults;
     }
 
+    public static function all(){
+        $sqlResults = Database::execute(
+            "SELECT * FROM id19693607_memas106.equipments"
+        );
+
+        return $sqlResults;
+    }
+
     public static function get($id){
         return Database::execute("SELECT * FROM `memas106`.`equipments` WHERE id = $id");
     }
-
-    /*
-    static function get($args){
-        $args_exploaded = explode('&', $args);
-
-        switch($args_exploaded[0]){
-            case 'ALL':
-                if (($args_exploaded))
-                break;
-
-        }
-        return new Equipment();
-    }
-    */
 }
