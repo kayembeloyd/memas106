@@ -32,7 +32,12 @@ class EquipmentsController {
 
         $status = Equipment::create($fields);
 
-        echo($status ? 'successfull' : 'failed');
+        $response = array();
+
+        $response['status'] = $status ? 'successfull' : 'failed';
+        $response['reason'] = $status ? 'successfully created equipment' : 'ERR1'; 
+
+        echo (json_encode($response));
     }
 
     static function update(){

@@ -20,10 +20,6 @@ class Database {
     }
 
     public static function execute($sql_statement){
-        echo "\n";
-        echo $sql_statement;
-        echo "\n";
-         
         // Make connection 
         $conn = new mysqli(self::$servername, self::$username, self::$password);
         
