@@ -10,7 +10,7 @@ class Equipment {
 
     public static function create($fields){
         $sqlResults = Database::execute(
-                "INSERT INTO id19693607_memas106 
+                "INSERT INTO id19693607_memas106.equipments 
                     (id, name, technical_specification) 
                 VALUES 
                     (" .
