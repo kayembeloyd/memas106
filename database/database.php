@@ -2,8 +2,8 @@
 
 class Database {
     public static $servername = "localhost";
-    public static $username = "root";
-    public static $password = "";
+    public static $username = "id19693607_memas";
+    public static $password = "2S9Ahy_@(EyFZgde";
 
     public static function checkConnection(){
         // Make connection 

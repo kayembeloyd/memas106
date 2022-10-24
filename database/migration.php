@@ -5,11 +5,9 @@ include_once "database/database.php";
 class Migration {
 
     public static function createEquipmentsTable(){
-        echo ("Step 4 </br>");
-
         $sql_statement = 
         "
-            CREATE TABLE `memas106`.`equipments` 
+            CREATE TABLE `id19693607_memas106`.`equipments` 
             
             (
                 `id` INT NOT NULL , 

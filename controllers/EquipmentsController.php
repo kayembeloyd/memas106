@@ -23,7 +23,20 @@ class EquipmentsController {
     }
 
     static function create(){
-        echo ('creating...');
+        // Get info 
+        $id = isset($_POST['id']) ? $_POST['id'] : 0 ;
+        $name = isset($_POST['name']) ? $_POST['name'] : '';
+        $technicalSpecification = isset($_POST['technical_specification']) ? $_POST['technical_specification'] : '';
+
+        $myResponse = array();
+
+        $myResponse['id'] = $id;
+        $myResponse['name'] = $name;
+        $myResponse['technical_specification'] = $technicalSpecification;
+
+        echo(json_encode($myResponse));
+
+        // echo ('creating...');
         
         // echo ($_POST['test']);
     }
