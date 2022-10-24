@@ -18,6 +18,9 @@ class Migration {
             ) 
                 
             ENGINE = InnoDB;
+
+
+            ALTER TABLE `equipments` CHANGE `name` `name` VARCHAR(256) NOT NULL;
         ";
 
         Database::execute($sql_statement);
