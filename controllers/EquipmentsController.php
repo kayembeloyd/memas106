@@ -19,11 +19,13 @@ class EquipmentsController {
             echo $equipment_object->oid;
             echo "\n Nice";
 
-            $technical_specifications = Equipment::getTechnicalSpecification($equipment_object->oid);
+            $technical_specifications = Equipment::getTechnicalSpecification($equipment_object->oid) ? Equipment::getTechnicalSpecification($equipment_object->oid) : NULL ;
             $technical_specifications_array = array();
             
-            while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
-                array_push($technical_specifications_array, $technical_specification_object);
+            if ($technical_specifications !== NULL){
+                while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
+                    array_push($technical_specifications_array, $technical_specification_object);
+                }
             }
 
             $equipment_object['technical_specifications'] = $technical_specifications_array;
