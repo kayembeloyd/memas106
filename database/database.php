@@ -35,6 +35,18 @@ class Database {
         return $results;
     }
 
+    public static function getLastID(){
+        // Make connection 
+        $conn = new mysqli(self::$servername, self::$username, self::$password);
+        
+        // Check connection
+        if ($conn->connect_error) {
+            return ($conn->connect_error);
+        }
+
+        return $conn->insert_id;
+    }
+
     public static function migrate(){
         Migration::runMigration();
     }
