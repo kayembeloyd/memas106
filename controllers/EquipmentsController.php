@@ -21,10 +21,10 @@ class EquipmentsController {
                 $modified_equipment_object['name'] = $equipment_object->name;
                 $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
 
-                $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']) ? Equipment::getTechnicalSpecification($modified_equipment_object['oid']) : NULL ;
+                $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
                 $technical_specifications_array = array();
                 
-                if ($technical_specifications !== NULL){
+                if ($technical_specifications){
                     while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
                         array_push($technical_specifications_array, $technical_specification_object);
                     }

@@ -48,7 +48,7 @@ class Equipment {
     }
 
     public static function getTechnicalSpecification($oid){
-        return Database::execute("SELECT * FROM id19693607_memas106.technical_specifications WHERE oid = $oid");
+        return Database::execute("SELECT * FROM id19693607_memas106.technical_specifications WHERE equipment_id = $oid");
     }
 
     public static function get($id){
