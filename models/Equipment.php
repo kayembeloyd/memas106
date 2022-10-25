@@ -4,7 +4,7 @@ include_once "database/database.php";
 
 class Equipment {
     public static function create($fields){
-        $equipment_creation_results = Database::execute(
+        $equipment_id = Database::execute_getting_last_id(
                 "INSERT INTO id19693607_memas106.equipments (id, name, asset_tag) 
                 VALUES (" .
                         $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."'"
@@ -17,7 +17,6 @@ class Equipment {
         $technical_specification_json = json_decode($fields['technical_specification']);
 
         $technical_specification_creation_sql_statement = '';
-        $equipment_id = Database::getLastID();
         $technical_specification_creation_results = true;
 
         foreach ($technical_specification_json as $key => $value) {
@@ -29,8 +28,8 @@ class Equipment {
 
             $technical_specification_creation_results = $technical_specification_creation_results && Database::execute($technical_specification_creation_sql_statement);
         }
-        
-        return $equipment_creation_results && $technical_specification_creation_results;
+
+        return $technical_specification_creation_results;
     }
 
     public static function all($group_length, $exceptions, $page){
