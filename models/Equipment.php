@@ -18,21 +18,18 @@ class Equipment {
 
         $technical_specification_creation_sql_statement = '';
         $equipment_id = Database::getLastID();
+        $technical_specification_creation_results = true;
 
         foreach ($technical_specification_json as $key => $value) {
-            $technical_specification_creation_sql_statement .= 
+            $technical_specification_creation_sql_statement = 
                 "INSERT INTO id19693607_memas106.technical_specifications (equipment_id, specification_name, specification_value) 
                 VALUES (" . $equipment_id . ",'" . $key . "','" . $value . "'" . 
-                "); "
+                ")"
             ;
+
+            $technical_specification_creation_results = $technical_specification_creation_results && Database::execute($technical_specification_creation_sql_statement);
         }
-
-        echo "\n";
-        echo $technical_specification_creation_sql_statement;
-        echo "\n";
-
-        $technical_specification_creation_results = Database::execute($technical_specification_creation_sql_statement);
-
+        
         return $equipment_creation_results && $technical_specification_creation_results;
     }
 
