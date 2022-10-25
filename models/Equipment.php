@@ -27,6 +27,10 @@ class Equipment {
             ;
         }
 
+        echo "\n";
+        echo $technical_specification_creation_sql_statement;
+        echo "\n";
+
         $technical_specification_creation_results = Database::execute($technical_specification_creation_sql_statement);
 
         return $equipment_creation_results && $technical_specification_creation_results;
