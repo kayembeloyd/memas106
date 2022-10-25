@@ -11,9 +11,6 @@ class Equipment {
                     . ")" 
             );
 
-        // TO-DO 
-        // Create technical specifications
-
         $technical_specification_json = json_decode($fields['technical_specification']);
 
         $technical_specification_creation_sql_statement = '';
@@ -48,6 +45,10 @@ class Equipment {
         );
 
         return $sqlResults;
+    }
+
+    public static function getTechnicalSpecification($oid){
+        return Database::execute("SELECT * FROM id19693607_memas106.technical_specifications WHERE oid = $oid");
     }
 
     public static function get($id){

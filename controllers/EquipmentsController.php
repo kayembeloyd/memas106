@@ -12,13 +12,22 @@ class EquipmentsController {
 
         $equipments = Equipment::all($group_length, $exceptions, $page);
 
-        $equipmentsArray = array();
+        $equipments_array = array();
         
-        while($obj = mysqli_fetch_object($equipments)){
-            array_push($equipmentsArray, $obj);
+        while($equipment_object = mysqli_fetch_object($equipments)){
+            $technical_specifications = Equipment::getTechnicalSpecification($equipment_object['oid']);
+            $technical_specifications_array = array();
+            
+            while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
+                array_push($technical_specifications_array, $technical_specification_object);
+            }
+
+            $equipment_object['technical_specifications'] = $technical_specifications_array;
+            array_push($equipmentsArray, $equipment_object);
+            
         }
 
-        echo json_encode($equipmentsArray);
+        echo json_encode($equipments_array);
         
         // $equipments = Equipment::get('all');
     }
