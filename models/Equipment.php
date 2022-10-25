@@ -28,10 +28,10 @@ class Equipment {
         $exception_statement = '';
 
         foreach ($exceptions_array as $exception) {
-            $exception_statement = $exception_statement . "id <> $exception AND ";    
+            $exception_statement = $exception_statement . "oid <> $exception AND ";    
         }
 
-        $exception_statement = $exception_statement . "id <> 0 ";
+        $exception_statement = $exception_statement . "oid <> 0 ";
 
         $sqlResults = Database::execute(
             "SELECT * FROM id19693607_memas106.equipments WHERE " . $exception_statement . "LIMIT " . $group_length . " OFFSET " . ($page - 1) * $group_length
