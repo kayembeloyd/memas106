@@ -31,7 +31,7 @@ class EquipmentsController {
                 }
 
                 $modified_equipment_object['technical_specifications'] = $technical_specifications_array;
-                array_push($equipmentsArray, $modified_equipment_object);                
+                array_push($equipments_array, $modified_equipment_object);                
             }
         }
 
