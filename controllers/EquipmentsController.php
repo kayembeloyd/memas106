@@ -15,6 +15,10 @@ class EquipmentsController {
         $equipments_array = array();
         
         while($equipment_object = mysqli_fetch_object($equipments)){
+            echo "\n Nice \n";
+            echo $equipment_object->oid;
+            echo "\n Nice";
+
             $technical_specifications = Equipment::getTechnicalSpecification($equipment_object->oid);
             $technical_specifications_array = array();
             
