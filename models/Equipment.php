@@ -3,20 +3,18 @@
 include_once "database/database.php";
 
 class Equipment {
-    public $id = 0;
-    public $oid = 0;
-    public $name = '';
-    public $technicalSpecifications = array();
-
     public static function create($fields){
         $sqlResults = Database::execute(
                 "INSERT INTO id19693607_memas106.equipments 
-                    (id, name, technical_specification) 
+                    (id, name, asset_tag) 
                 VALUES 
                     (" .
-                        $fields['id'] . ",'" . $fields['name'] . "','" . $fields['technical_specification']."'"
+                        $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."'"
                     . ")" 
             );
+
+        // TO-DO 
+        // Create technical specifications
 
         return $sqlResults;
     }

@@ -33,6 +33,7 @@ class EquipmentsController {
 
         $fields['id'] = isset($_POST['id']) ? $_POST['id'] : 0 ;
         $fields['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+        $fields['asset_tag'] = isset($_POST['asset_tag']) ? $_POST['asset_tag'] : '';
         $fields['technical_specification'] = isset($_POST['technical_specification']) ? $_POST['technical_specification'] : '';
 
         $status = Equipment::create($fields);
