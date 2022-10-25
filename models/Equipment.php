@@ -21,9 +21,20 @@ class Equipment {
         return $sqlResults;
     }
 
-    public static function all(){
+    public static function all($group_length, $exceptions, $page){
+        // SAMPLE 
+        /// SELECT * FROM `equipments` WHERE id <> 2 AND id <> 4 AND id <> 8 LIMIT 5 OFFSET 5
+        $exceptions_array = explode(',', $exceptions);
+        $exception_statement = '';
+
+        foreach ($exceptions_array as $exception) {
+            $exception_statement = $exception_statement . "id <> $exception AND ";    
+        }
+
+        $exception_statement = $exception_statement . "id <> 0 ";
+
         $sqlResults = Database::execute(
-            "SELECT * FROM id19693607_memas106.equipments"
+            "SELECT * FROM id19693607_memas106.equipments WHERE " . $exception_statement . "LIMIT " . $group_length . " OFFSET " . ($page - 1) * $group_length
         );
 
         return $sqlResults;

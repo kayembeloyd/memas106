@@ -5,7 +5,12 @@ include_once "models/Equipment.php";
 
 class EquipmentsController {
     static function index(){
-        $equipments = Equipment::all();
+
+        $group_length = isset($_REQUEST['group_length']) ? $_REQUEST['group_length'] : 5;
+        $exceptions = isset($_REQUEST['exceptions']) ? $_REQUEST['exceptions'] : '';
+        $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
+
+        $equipments = Equipment::all($group_length, $exceptions, $page);
 
         $equipmentsArray = array();
         
@@ -20,14 +25,6 @@ class EquipmentsController {
 
     static function show($id){
         echo ('showing an equipment...');
-        
-        /*
-        $equipments = Equipment::get($id);
-
-        while ($obj = mysqli_fetch_object($equipments)) {
-            echo '$obj->name = '. $obj->name;
-        } */
-        // echo 'Database::checkConnection() = ' . Database::checkConnection();
     }
 
     static function create(){
