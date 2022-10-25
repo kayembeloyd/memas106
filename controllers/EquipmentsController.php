@@ -11,26 +11,28 @@ class EquipmentsController {
         $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
 
         $equipments = Equipment::all($group_length, $exceptions, $page);
-
         $equipments_array = array();
-        
-        while($equipment_object = mysqli_fetch_object($equipments)){
-            echo "\n Nice \n";
-            echo $equipment_object->oid;
-            echo "\n Nice";
 
-            $technical_specifications = Equipment::getTechnicalSpecification($equipment_object->oid) ? Equipment::getTechnicalSpecification($equipment_object->oid) : NULL ;
-            $technical_specifications_array = array();
-            
-            if ($technical_specifications !== NULL){
-                while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
-                    array_push($technical_specifications_array, $technical_specification_object);
+        if ($equipments){
+            while($equipment_object = mysqli_fetch_object($equipments)){
+                $modified_equipment_object = array();
+                $modified_equipment_object['id'] = $equipment_object->id;
+                $modified_equipment_object['oid'] = $equipment_object->oid;
+                $modified_equipment_object['name'] = $equipment_object->name;
+                $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
+
+                $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']) ? Equipment::getTechnicalSpecification($modified_equipment_object['oid']) : NULL ;
+                $technical_specifications_array = array();
+                
+                if ($technical_specifications !== NULL){
+                    while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
+                        array_push($technical_specifications_array, $technical_specification_object);
+                    }
                 }
-            }
 
-            $equipment_object['technical_specifications'] = $technical_specifications_array;
-            array_push($equipmentsArray, $equipment_object);
-            
+                $modified_equipment_object['technical_specifications'] = $technical_specifications_array;
+                array_push($equipmentsArray, $modified_equipment_object);                
+            }
         }
 
         echo json_encode($equipments_array);
