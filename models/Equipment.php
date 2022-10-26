@@ -54,7 +54,7 @@ class Equipment {
     }
 
     public static function update($equipment){
-        $online_equipment = Database::execute("SELECT updated_at FROM id19693607_memas106.equipments WHERE oid = $equipment->oid");
+        $online_equipment = Database::execute("SELECT * FROM id19693607_memas106.equipments WHERE oid = $equipment->oid");
 
         if ($online_equipment){
             $online_equipment_object = mysqli_fetch_object($online_equipment);
