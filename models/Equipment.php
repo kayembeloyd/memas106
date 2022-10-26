@@ -4,16 +4,6 @@ include_once "database/database.php";
 
 class Equipment {
     public static function create($fields){
-        $sql_sta = 
-        "INSERT INTO id19693607_memas106.equipments (id, name, asset_tag, created_at, updated_at)  
-                VALUES (" . $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."','" . $fields['created_at'] . "','" . $fields['updated_at'] . "'"
-                . ")";
-
-        // INSERT INTO id19693607_memas106.equipments (id, name, asset_tag, created_at, updated_at)
-        // VALUES (8,'Oxygen Concentrator 8','M001-00008', '2022-10-26 10:34:09', '2022-10-26 10:34:09')
-        echo $sql_sta;
-
-        /*
         $equipment_id = Database::execute_getting_last_id(
                 "INSERT INTO id19693607_memas106.equipments (id, name, asset_tag, created_at, updated_at)  
                 VALUES (" . $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."','" . $fields['created_at'] . "','" . $fields['updated_at'] . "'"
@@ -34,7 +24,7 @@ class Equipment {
             $technical_specification_creation_results = $technical_specification_creation_results && Database::execute($technical_specification_creation_sql_statement);
         } 
 
-        return $technical_specification_creation_results; */
+        return $technical_specification_creation_results;
     }
 
     public static function all($group_length, $exceptions, $page){
