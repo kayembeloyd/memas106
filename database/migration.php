@@ -14,6 +14,8 @@ class Migration {
             CREATE TABLE `id19693607_memas106`.`technical_specifications` ( `id` INT NOT NULL AUTO_INCREMENT , `equipment_id` INT NOT NULL , `specification_name` VARCHAR(256) NOT NULL , `specification_value` VARCHAR(256) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
         
             ALTER TABLE `id19693607_memas106`.`equipments` CHANGE `technical_specification` `asset_tag` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
+
+            ALTER TABLE `equipments` ADD `created_at` TIMESTAMP NOT NULL AFTER `asset_tag`, ADD `updated_at` TIMESTAMP NOT NULL AFTER `created_at`;
         ";
 
         Database::execute($sql_statement);

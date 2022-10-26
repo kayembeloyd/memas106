@@ -5,7 +5,6 @@ include_once "models/Equipment.php";
 
 class EquipmentsController {
     static function index(){
-
         $group_length = isset($_REQUEST['group_length']) ? $_REQUEST['group_length'] : 5;
         $exceptions = isset($_REQUEST['exceptions']) ? $_REQUEST['exceptions'] : '';
         $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
@@ -36,8 +35,6 @@ class EquipmentsController {
         }
 
         echo json_encode($equipments_array);
-        
-        // $equipments = Equipment::get('all');
     }
 
     static function show($id){
@@ -45,7 +42,6 @@ class EquipmentsController {
     }
 
     static function create(){
-        // Get info 
         $fields = array();
 
         $fields['id'] = isset($_POST['id']) ? $_POST['id'] : 0 ;
@@ -65,5 +61,17 @@ class EquipmentsController {
 
     static function update(){
         echo ('updating...');
+
+        // Equipment oid to be updated will be sent to the server in parts
+        // The server will then sync the equipments
+        // if a latest equipment info is from the local database, the online database 
+            // will be updated and the equipment will not be returned
+        // If a latest equipment is in the online database then the equipment will be returned
+
+        $fields = array();
+
+        $fields['equipments'] = isset($_POST['equipments']);
+
+        $equipments_to_sync = json_decode($fields['equipments']);
     }
 }

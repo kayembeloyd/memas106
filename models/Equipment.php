@@ -5,9 +5,9 @@ include_once "database/database.php";
 class Equipment {
     public static function create($fields){
         $equipment_id = Database::execute_getting_last_id(
-                "INSERT INTO id19693607_memas106.equipments (id, name, asset_tag) 
+                "INSERT INTO id19693607_memas106.equipments (id, name, asset_tag, created_at, updated_at) 
                 VALUES (" .
-                        $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."'"
+                        $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."', NOW(), NOW()"
                     . ")" 
             );
 
