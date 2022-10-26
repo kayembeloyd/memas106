@@ -64,18 +64,22 @@ class EquipmentsController {
     }
 
     static function update(){
-        echo ('updating...');
-
-        // Equipment oid to be updated will be sent to the server in parts
-        // The server will then sync the equipments
-        // if a latest equipment info is from the local database, the online database 
-            // will be updated and the equipment will not be returned
-        // If a latest equipment is in the online database then the equipment will be returned
-
         $fields = array();
 
         $fields['equipments'] = isset($_POST['equipments']);
 
         $equipments_to_sync = json_decode($fields['equipments']);
+
+        $update_results = array();
+
+        foreach ($equipments_to_sync as $equipment) {
+            $update_result = Equipment::update($equipment);
+            if ($update_result){
+                $update_result_object = mysqli_fetch_object($update_result);
+                array_push($update_results, $update_result_object);
+            }
+        }
+
+        echo (json_encode($update_results));
     }
 }
