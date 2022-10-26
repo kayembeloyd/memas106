@@ -59,7 +59,7 @@ class Equipment {
         if ($online_equipment){
             $online_equipment_object = mysqli_fetch_object($online_equipment);
 
-            if (new DateTime($online_equipment_object->created_at) < new DateTime($equipment->created_at)){
+            if (new DateTime($online_equipment_object->updated_at) < new DateTime($equipment->updated_at)){
                 // Update the online database
                 $fields = array();
 
