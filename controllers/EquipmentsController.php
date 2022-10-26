@@ -66,7 +66,7 @@ class EquipmentsController {
     static function update(){
         $fields = array();
 
-        $fields['equipments'] = isset($_POST['equipments']);
+        $fields['equipments'] = isset($_POST['equipments']) ? $_POST['equipments'] : '';
 
         $equipments_to_sync = json_decode($fields['equipments']);
 
