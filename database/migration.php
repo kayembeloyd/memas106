@@ -16,6 +16,11 @@ class Migration {
             ALTER TABLE `id19693607_memas106`.`equipments` CHANGE `technical_specification` `asset_tag` TEXT CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
 
             ALTER TABLE `equipments` ADD `created_at` TIMESTAMP NOT NULL AFTER `asset_tag`, ADD `updated_at` TIMESTAMP NOT NULL AFTER `created_at`;
+        
+            ALTER TABLE `equipments` CHANGE `created_at` `created_at` DATETIME NOT NULL;
+
+            ALTER TABLE `equipments` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
+        
         ";
 
         Database::execute($sql_statement);
