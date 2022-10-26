@@ -19,6 +19,8 @@ class EquipmentsController {
                 $modified_equipment_object['oid'] = $equipment_object->oid;
                 $modified_equipment_object['name'] = $equipment_object->name;
                 $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
+                $modified_equipment_object['created_at'] = $equipment_object->created_at;
+                $modified_equipment_object['updated_at'] = $equipment_object->updated_at;
 
                 $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
                 $technical_specifications_array = array();
