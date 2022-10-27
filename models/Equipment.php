@@ -87,6 +87,7 @@ class Equipment {
                     return self::get($online_equipment_object->oid);
                 }
             } else {
+                $fields['technical_specifications'] = json_encode($equipment->technical_specifications);
                 return self::get(self::create($fields));
             }
         }
