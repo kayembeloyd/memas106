@@ -76,6 +76,8 @@ class Equipment {
                 
                 return self::get($online_equipment_object->oid);
             }
+        } else {
+            echo "Not found";
         }
 
         return false;
