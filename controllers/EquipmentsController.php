@@ -40,7 +40,14 @@ class EquipmentsController {
     }
 
     static function show($id){
-        echo ('showing an equipment...');
+        $equipment = Equipment::get($id);
+
+        if ($equipment){
+            $equipment_object = mysqli_fetch_object($equipment);
+            echo json_encode($equipment_object);
+        } else {
+            echo "404 Resource not found";
+        }
     }
 
     static function create(){
