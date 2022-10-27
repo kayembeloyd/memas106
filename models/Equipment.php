@@ -71,11 +71,7 @@ class Equipment {
                 
                 // Updating the technical specifications
                 foreach ($fields['technical_specifications'] as $technical_specification) {
-                    echo "\n DEBUG \n";
-                    echo ("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WNERE id = " . $technical_specification->id);
-                    echo "DEBUG \n";
-                    
-                    Database::execute("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WNERE id = " . $technical_specification->id);
+                    Database::execute("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WHERE id = " . $technical_specification->id);
                 }
                 
                 return self::get($online_equipment_object->oid);
