@@ -60,7 +60,7 @@ class Equipment {
         $fields['id'] = $equipment->id;
         $fields['name'] = $equipment->name;
         $fields['asset_tag'] = $equipment->asset_tag;
-        $fields['technical_specifications'] = $equipment->technical_specification;
+        $fields['technical_specifications'] = $equipment->technical_specifications;
         $fields['created_at'] = $equipment->created_at;
         $fields['updated_at'] = $equipment->updated_at;
 
