@@ -56,7 +56,7 @@ class EquipmentsController {
         $fields['id'] = isset($_POST['id']) ? $_POST['id'] : 0 ;
         $fields['name'] = isset($_POST['name']) ? $_POST['name'] : '';
         $fields['asset_tag'] = isset($_POST['asset_tag']) ? $_POST['asset_tag'] : '';
-        $fields['technical_specification'] = isset($_POST['technical_specification']) ? $_POST['technical_specification'] : '';
+        $fields['technical_specifications'] = isset($_POST['technical_specifications']) ? $_POST['technical_specifications'] : '';
         $fields['created_at'] = isset($_POST['created_at']) ? $_POST['created_at'] : '2022-10-26 04:27' ;
         $fields['updated_at'] = isset($_POST['updated_at']) ? $_POST['updated_at'] : '2022-10-26 04:27' ;
 

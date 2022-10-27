@@ -9,7 +9,7 @@ class Equipment {
                 VALUES (" . $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."','" . $fields['created_at'] . "','" . $fields['updated_at'] . "'"
                 . ")" );
 
-        $technical_specification_json = json_decode($fields['technical_specification']);
+        $technical_specification_json = json_decode($fields['technical_specifications']);
 
         $technical_specification_creation_sql_statement = '';
         $technical_specification_creation_results = true;
@@ -23,7 +23,7 @@ class Equipment {
             $technical_specification_creation_results = $technical_specification_creation_results && Database::execute($technical_specification_creation_sql_statement);
         } 
 
-        return $technical_specification_creation_results;
+        return $equipment_id;
     }
 
     public static function all($group_length, $exceptions, $page){
@@ -55,6 +55,15 @@ class Equipment {
     public static function update($equipment){
         $online_equipment = Database::execute("SELECT * FROM id19693607_memas106.equipments WHERE oid = $equipment->oid");
 
+        $fields = array();
+
+        $fields['id'] = $equipment->id;
+        $fields['name'] = $equipment->name;
+        $fields['asset_tag'] = $equipment->asset_tag;
+        $fields['technical_specifications'] = $equipment->technical_specification;
+        $fields['created_at'] = $equipment->created_at;
+        $fields['updated_at'] = $equipment->updated_at;
+
         if ($online_equipment){
             $online_equipment_object = mysqli_fetch_object($online_equipment);
 
@@ -78,12 +87,8 @@ class Equipment {
                     return self::get($online_equipment_object->oid);
                 }
             } else {
-                echo "Not found wa fake";
+                return self::get(self::create($fields));
             }
-
-            
-        } else {
-            echo "Not found";
         }
 
         return false;
