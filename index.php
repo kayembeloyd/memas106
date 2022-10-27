@@ -22,6 +22,7 @@ switch($_SERVER['REQUEST_METHOD']){
 
         // Shows all equipments in groups of 5 by default or specified through group length parameter in the request
         /* Parameters
+        page = 1
         group_length = 5
         exceptions = 1,2,3,4,5 */
         Route::add('/equipments', function() { EquipmentsController::index(); });
