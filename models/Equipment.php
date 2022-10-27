@@ -18,8 +18,7 @@ class Equipment {
             $technical_specification_creation_sql_statement = 
                 "INSERT INTO id19693607_memas106.technical_specifications (equipment_id, specification_name, specification_value) 
                 VALUES (" . $equipment_id . ",'" . $key . "','" . $value . "'" . 
-                ")"
-            ;
+                ")";
 
             $technical_specification_creation_results = $technical_specification_creation_results && Database::execute($technical_specification_creation_sql_statement);
         } 
@@ -69,8 +68,13 @@ class Equipment {
 
                 Database::execute("UPDATE id19693607_memas106.equipments SET name = '" . $fields['name'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $equipment->oid);
             
+                
                 // Updating the technical specifications
                 foreach ($fields['technical_specifications'] as $technical_specification) {
+                    echo "\n DEBUG \n";
+                    echo ("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WNERE id = " . $technical_specification->id);
+                    echo "DEBUG \n";
+                    
                     Database::execute("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WNERE id = " . $technical_specification->id);
                 }
                 
