@@ -58,24 +58,30 @@ class Equipment {
         if ($online_equipment){
             $online_equipment_object = mysqli_fetch_object($online_equipment);
 
-            if (new DateTime($online_equipment_object->updated_at) < new DateTime($equipment->updated_at)){
-                // Update the online database
-                $fields = array();
-
-                $fields['name'] = $equipment->name;
-                $fields['updated_at'] = $equipment->updated_at;
-                $fields['technical_specifications'] = $equipment->technical_specifications;
-
-                Database::execute("UPDATE id19693607_memas106.equipments SET name = '" . $fields['name'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $equipment->oid);
-            
+            if ($online_equipment_object){
+                if (new DateTime($online_equipment_object->updated_at) < new DateTime($equipment->updated_at)){
+                    // Update the online database
+                    $fields = array();
+    
+                    $fields['name'] = $equipment->name;
+                    $fields['updated_at'] = $equipment->updated_at;
+                    $fields['technical_specifications'] = $equipment->technical_specifications;
+    
+                    Database::execute("UPDATE id19693607_memas106.equipments SET name = '" . $fields['name'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $equipment->oid);
                 
-                // Updating the technical specifications
-                foreach ($fields['technical_specifications'] as $technical_specification) {
-                    Database::execute("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WHERE id = " . $technical_specification->id);
+                    
+                    // Updating the technical specifications
+                    foreach ($fields['technical_specifications'] as $technical_specification) {
+                        Database::execute("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WHERE id = " . $technical_specification->id);
+                    }
+                    
+                    return self::get($online_equipment_object->oid);
                 }
-                
-                return self::get($online_equipment_object->oid);
+            } else {
+                echo "Not found wa fake";
             }
+
+            
         } else {
             echo "Not found";
         }
