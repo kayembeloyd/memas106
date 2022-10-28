@@ -14,10 +14,10 @@ class Equipment {
         $technical_specification_creation_sql_statement = '';
         $technical_specification_creation_results = true;
 
-        foreach ($technical_specification_json as $key => $value) {
+        foreach ($technical_specification_json as $technical_specification_json_object) {
             $technical_specification_creation_sql_statement = 
                 "INSERT INTO id19693607_memas106.technical_specifications (equipment_id, specification_name, specification_value) 
-                VALUES (" . $equipment_id . ",'" . $key . "','" . $value . "'" . 
+                VALUES (" . $equipment_id . ",'" . $technical_specification_json_object->specification_name . "','" . $technical_specification_json_object->specification_value . "'" . 
                 ")";
 
             $technical_specification_creation_results = $technical_specification_creation_results && Database::execute($technical_specification_creation_sql_statement);
