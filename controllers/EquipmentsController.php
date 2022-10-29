@@ -91,6 +91,17 @@ class EquipmentsController {
                 $modified_equipment_object['asset_tag'] = $update_result_object->asset_tag;
                 $modified_equipment_object['created_at'] = $update_result_object->created_at;
                 $modified_equipment_object['updated_at'] = $update_result_object->updated_at;
+                
+                $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
+                $technical_specifications_array = array();
+                
+                if ($technical_specifications){
+                    while($technical_specification_object = mysqli_fetch_object($technical_specifications)){
+                        array_push($technical_specifications_array, $technical_specification_object);
+                    }
+                }
+
+                $modified_equipment_object['technical_specifications'] = $technical_specifications_array;
 
                 array_push($update_results, $modified_equipment_object);
             }
