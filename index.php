@@ -70,6 +70,7 @@ switch($_SERVER['REQUEST_METHOD']){
         // Creates tables in the online database
         Route::add('/migrate', function() { Migration::runMigration(); });
 
+        Route::add('/post/test', function() { echo $_POST['test']; });
         break;
     default:
         echo 'unsupported method';
