@@ -75,6 +75,10 @@ class EquipmentsController {
 
         $fields['equipments'] = isset($_POST['equipments']) ? $_POST['equipments'] : '';
 
+        echo "\n";
+        echo ($fields['equipments']);
+        echo "\n";
+        
         $equipments_to_sync = json_decode($fields['equipments']);
 
         $update_results = array();
