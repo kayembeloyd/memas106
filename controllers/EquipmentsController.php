@@ -83,6 +83,15 @@ class EquipmentsController {
             $update_result = Equipment::update($equipment);
             if ($update_result){
                 $update_result_object = mysqli_fetch_object($update_result);
+                
+                $modified_equipment_object = array();
+                $modified_equipment_object['id'] = $equipment->id;
+                $modified_equipment_object['oid'] = $update_result_object->oid;
+                $modified_equipment_object['name'] = $update_result_object->name;
+                $modified_equipment_object['asset_tag'] = $update_result_object->asset_tag;
+                $modified_equipment_object['created_at'] = $update_result_object->created_at;
+                $modified_equipment_object['updated_at'] = $update_result_object->updated_at;
+
                 array_push($update_results, $update_result_object);
             }
         }
