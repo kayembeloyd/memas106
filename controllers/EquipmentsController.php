@@ -92,7 +92,7 @@ class EquipmentsController {
                 $modified_equipment_object['created_at'] = $update_result_object->created_at;
                 $modified_equipment_object['updated_at'] = $update_result_object->updated_at;
 
-                array_push($update_results, $update_result_object);
+                array_push($update_results, $modified_equipment_object);
             }
         }
 
