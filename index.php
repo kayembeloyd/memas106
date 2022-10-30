@@ -59,10 +59,10 @@ switch($_SERVER['REQUEST_METHOD']){
         
         
         // Gets maintenance logs for a specific equipment
-        Route::add('/maintenance-logs/equipment/+', function($id) { echo ('showing maintenance logs for equipment with id = ' . $id); });
+        Route::add('/maintenance-logs/equipment/.+', function($id) { echo ('showing maintenance logs for equipment with id = ' . $id); });
         
         // Gets a specific maintenance log
-        Route::add('/maintenance-logs/+', function($id) { echo ('showing maintenance log with id = ' . $id); });
+        Route::add('/maintenance-logs/.+', function($id) { echo ('showing maintenance log with id = ' . $id); });
         
         // Gets maintenance logs
         /* Parameters
@@ -83,7 +83,7 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/equipments/update', function() { EquipmentsController::update(); });
 
 
-        
+
         // Creates a maintenance log
         Route::add('/maintenance-logs', function() { echo ('creating maintenance logs'); });
 
