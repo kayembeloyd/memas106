@@ -44,6 +44,8 @@ switch($_SERVER['REQUEST_METHOD']){
         // Testing route 
         Route::add('/', function(){ echo('home'); });
 
+        
+        
         // Shows a specific equiment
         Route::add('/equipments/.+', function($id) { EquipmentsController::show($id); });
 
@@ -54,23 +56,45 @@ switch($_SERVER['REQUEST_METHOD']){
         exceptions = 1,2,3,4,5 */
         Route::add('/equipments', function() { EquipmentsController::index(); });
 
+        
+        
+        // Gets maintenance logs for a specific equipment
+        Route::add('/maintenance-logs/equipment/+', function($id) { echo ('showing maintenance logs for equipment with id = ' . $id); });
+        
+        // Gets a specific maintenance log
+        Route::add('/maintenance-logs/+', function($id) { echo ('showing maintenance log with id = ' . $id); });
+        
+        // Gets maintenance logs
+        /* Parameters
+        page = 1
+        group_length = 5
+        exceptions = 1,2,3,4,5 */
+        Route::add('/maintenance-logs', function() { echo ('showing maintenance logs'); });
+
         break;
     case 'POST':
         // Adds one equipment to online database
         Route::add('/equipments', function() { EquipmentsController::create(); });
 
-        
         // Synchronizes the local and online database
         /* It receives equipments that needs to be updated downwards or upwards 
             it will only return equipments that needs to be updated in the local database
         */
         Route::add('/equipments/update', function() { EquipmentsController::update(); });
 
+
+        
+        // Creates a maintenance log
+        Route::add('/maintenance-logs', function() { echo ('creating maintenance logs'); });
+
+        
+        
         // Temporary
         // Creates tables in the online database
         Route::add('/migrate', function() { Migration::runMigration(); });
-
+        // Tets a POST request
         Route::add('/post/test', function() { echo $_POST['test']; });
+
         break;
     default:
         echo 'unsupported method';
