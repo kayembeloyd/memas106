@@ -20,7 +20,10 @@ class Migration {
             ALTER TABLE `equipments` CHANGE `created_at` `created_at` DATETIME NOT NULL;
 
             ALTER TABLE `equipments` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
-        
+
+            CREATE TABLE `id19693607_memas106`.`mantenance_logs` ( `id` INT NOT NULL , `oid` INT NOT NULL AUTO_INCREMENT , `type` VARCHAR(256) NOT NULL , `equipment_oid` INT NOT NULL , `description` TEXT NOT NULL , `created_at` DATETIME NOT NULL , `updated_at` DATETIME NOT NULL , PRIMARY KEY (`oid`)) ENGINE = InnoDB;
+            
+            ALTER TABLE `mantenance_logs` ADD `equipment_id` INT NOT NULL AFTER `equipment_oid`;
         ";
 
         Database::execute($sql_statement);

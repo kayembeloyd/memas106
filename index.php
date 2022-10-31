@@ -3,6 +3,7 @@
 include_once "route.php";
 
 include_once "controllers/EquipmentsController.php";
+include_once "controllers/MaintenanceLogController.php";
 
 include_once "database/migration.php";
 
@@ -85,7 +86,7 @@ switch($_SERVER['REQUEST_METHOD']){
 
 
         // Creates a maintenance log
-        Route::add('/maintenance-logs', function() { echo ('creating maintenance logs'); });
+        Route::add('/maintenance-logs', function() { MaintenanceLogController::create(); });
 
         
         
