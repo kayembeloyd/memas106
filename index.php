@@ -70,7 +70,7 @@ switch($_SERVER['REQUEST_METHOD']){
         page = 1
         group_length = 5
         exceptions = 1,2,3,4,5 */
-        Route::add('/maintenance-logs', function() { echo ('showing maintenance logs'); });
+        Route::add('/maintenance-logs', function() { MaintenanceLogController::index(); });
 
         break;
     case 'POST':
