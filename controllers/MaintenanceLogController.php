@@ -2,6 +2,7 @@
 
 
 include_once "models/MaintenanceLog.php";
+include_once "models/Equipment.php";
 
 class MaintenanceLogController {
     static function index(){
@@ -25,6 +26,17 @@ class MaintenanceLogController {
                 $modified_maintenance_log_object['description'] = $maintenance_log_object->description;
                 $modified_maintenance_log_object['created_at'] = $maintenance_log_object->created_at;
                 $modified_maintenance_log_object['updated_at'] = $maintenance_log_object->updated_at;
+
+                // Get equipment information
+                $equipment = Equipment::get($modified_maintenance_log_object['equipment_oid']);
+
+                if ($equipment){
+                    $equipment_object = mysqli_fetch_object($equipment);
+
+                    $modified_maintenance_log_object['equipment_name'] = $equipment_object->name;
+                    $modified_maintenance_log_object['equipment_asset_tag'] = $equipment_object->asset_tag;
+                }
+
 
                 array_push($maintenance_logs_array, $modified_maintenance_log_object);                
             }
