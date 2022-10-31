@@ -80,6 +80,7 @@ class MaintenanceLogController {
 
         foreach ($maintenance_logs_to_sync as $maintenance_log) {
             $update_result = MaintenanceLog::update($maintenance_log);
+            
             if ($update_result){
                 $update_result_object = mysqli_fetch_object($update_result);
                 
