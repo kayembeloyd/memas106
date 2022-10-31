@@ -70,5 +70,34 @@ class MaintenanceLogController {
     }
 
     static function update(){
+        $fields = array();
+
+        $fields['maintenance_logs'] = isset($_POST['maintenance_logs']) ? $_POST['maintenance_logs'] : '';
+
+        $maintenance_logs_to_sync = json_decode($fields['maintenance_logs']);
+
+        $update_results = array();
+
+        foreach ($maintenance_logs_to_sync as $maintenance_log) {
+            $update_result = MaintenanceLog::update($maintenance_log);
+            if ($update_result){
+                $update_result_object = mysqli_fetch_object($update_result);
+                
+                $modified_maintenance_log_object = array();
+
+                $modified_maintenance_log_object['id'] = $maintenance_log->id;
+                $modified_maintenance_log_object['oid'] = $update_result_object->oid;
+                $modified_maintenance_log_object['type'] = $update_result_object->type;
+                $modified_maintenance_log_object['equipment_oid'] = $update_result_object->equipment_oid;
+                $modified_maintenance_log_object['equipment_id'] = $update_result_object->equipment_id;
+                $modified_maintenance_log_object['description'] = $update_result_object->description;
+                $modified_maintenance_log_object['created_at'] = $update_result_object->created_at;
+                $modified_maintenance_log_object['updated_at'] = $update_result_object->updated_at;
+
+                array_push($update_results, $modified_maintenance_log_object);
+            }
+        }
+
+        echo (json_encode($update_results));
     }
 }

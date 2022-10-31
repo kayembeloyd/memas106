@@ -88,6 +88,9 @@ switch($_SERVER['REQUEST_METHOD']){
         // Creates a maintenance log
         Route::add('/maintenance-logs', function() { MaintenanceLogController::create(); });
 
+        // Updates the maintenance logs
+        Route::add('/maintenance-logs/update', function() { MaintenanceLogController::update(); });
+
         
         
         // Temporary
