@@ -5,6 +5,12 @@ include_once "models/MaintenanceLog.php";
 
 class MaintenanceLogController {
     static function index(){
+    }
+
+    static function show($id){
+    }
+
+    static function create(){
         $fields = array();
 
         $fields['id'] = isset($_POST['id']) ? $_POST['id'] : 0 ;
@@ -23,12 +29,6 @@ class MaintenanceLogController {
         $response['reason'] = $status ? 'successfully created maintenance log' : 'ERR1'; 
 
         echo (json_encode($response));
-    }
-
-    static function show($id){
-    }
-
-    static function create(){
     }
 
     static function update(){
