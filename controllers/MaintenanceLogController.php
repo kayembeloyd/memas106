@@ -80,7 +80,7 @@ class MaintenanceLogController {
 
         foreach ($maintenance_logs_to_sync as $maintenance_log) {
             $update_result = MaintenanceLog::update($maintenance_log);
-            
+
             if ($update_result){
                 $update_result_object = mysqli_fetch_object($update_result);
                 
@@ -94,6 +94,16 @@ class MaintenanceLogController {
                 $modified_maintenance_log_object['description'] = $update_result_object->description;
                 $modified_maintenance_log_object['created_at'] = $update_result_object->created_at;
                 $modified_maintenance_log_object['updated_at'] = $update_result_object->updated_at;
+
+                // Get equipment information
+                $equipment = Equipment::get($modified_maintenance_log_object['equipment_oid']);
+
+                if ($equipment){
+                    $equipment_object = mysqli_fetch_object($equipment);
+
+                    $modified_maintenance_log_object['equipment_name'] = $equipment_object->name;
+                    $modified_maintenance_log_object['equipment_asset_tag'] = $equipment_object->asset_tag;
+                }
 
                 array_push($update_results, $modified_maintenance_log_object);
             }
