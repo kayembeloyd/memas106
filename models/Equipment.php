@@ -52,6 +52,10 @@ class Equipment {
         return Database::execute("SELECT * FROM `id19693607_memas106`.`equipments` WHERE oid = $oid");
     }
 
+    public static function getAssetTag($asset_tag){
+        return Database::execute("SELECT * FROM `id19693607_memas106`.`equipments` WHERE asset_tag = '$asset_tag'");
+    }
+
     public static function update($equipment){
         $online_equipment = Database::execute("SELECT * FROM id19693607_memas106.equipments WHERE oid = $equipment->oid");
 

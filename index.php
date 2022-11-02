@@ -46,7 +46,9 @@ switch($_SERVER['REQUEST_METHOD']){
         Route::add('/', function(){ echo('home'); });
 
         
-        
+        // Gets equipment from asset tag
+        Route::add('/equipments/asset-tag/.+', function($asset_tag) { EquipmentsController::showAssetTag($asset_tag); });
+
         // Shows a specific equiment
         Route::add('/equipments/.+', function($id) { EquipmentsController::show($id); });
 
