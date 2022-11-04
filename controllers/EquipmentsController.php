@@ -141,17 +141,17 @@ class EquipmentsController {
                 
                 $modified_equipment_object = array();
                 $modified_equipment_object['id'] = $equipment->id;
-                $modified_equipment_object['oid'] = $equipment->oid;
-                $modified_equipment_object['created_at'] = $equipment->created_at;
-                $modified_equipment_object['updated_at'] = $equipment->updated_at;
-                $modified_equipment_object['name'] = $equipment->name;
-                $modified_equipment_object['make'] = $equipment->make;
-                $modified_equipment_object['model'] = $equipment->model;
-                $modified_equipment_object['serial_number'] = $equipment->serial_number;
-                $modified_equipment_object['asset_tag'] = $equipment->asset_tag;
-                $modified_equipment_object['department'] = $equipment->department;
-                $modified_equipment_object['commission_date'] = $equipment->commission_date;
-                $modified_equipment_object['supplied_by'] = $equipment->supplied_by;
+                $modified_equipment_object['oid'] = $update_result_object->oid;
+                $modified_equipment_object['created_at'] = $update_result_object->created_at;
+                $modified_equipment_object['updated_at'] = $update_result_object->updated_at;
+                $modified_equipment_object['name'] = $update_result_object->name;
+                $modified_equipment_object['make'] = $update_result_object->make;
+                $modified_equipment_object['model'] = $update_result_object->model;
+                $modified_equipment_object['serial_number'] = $update_result_object->serial_number;
+                $modified_equipment_object['asset_tag'] = $update_result_object->asset_tag;
+                $modified_equipment_object['department'] = $update_result_object->department;
+                $modified_equipment_object['commission_date'] = $update_result_object->commission_date;
+                $modified_equipment_object['supplied_by'] = $update_result_object->supplied_by;
                 
                 $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
                 $technical_specifications_array = array();

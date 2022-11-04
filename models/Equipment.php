@@ -84,7 +84,13 @@ class Equipment {
 
         $fields['id'] = $equipment->id;
         $fields['name'] = $equipment->name;
+        $fields['make'] = $equipment->make;
+        $fields['model'] = $equipment->model;
+        $fields['serial_number'] = $equipment->serial_number;
         $fields['asset_tag'] = $equipment->asset_tag;
+        $fields['department'] = $equipment->department;
+        $fields['commission_date'] = $equipment->commission_date;
+        $fields['supplied_by'] = $equipment->supplied_by;
         $fields['technical_specifications'] = $equipment->technical_specifications;
         $fields['created_at'] = $equipment->created_at;
         $fields['updated_at'] = $equipment->updated_at;
