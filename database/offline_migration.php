@@ -21,3 +21,7 @@ RENAME TABLE `memas106`.`mantenance_logs` TO `memas106`.`maintenance_logs`;
 ALTER TABLE `equipments` ADD `make` TEXT NULL AFTER `asset_tag`, ADD `model` TEXT NULL AFTER `make`, ADD `serial_number` VARCHAR(256) NULL AFTER `model`;
 
 ALTER TABLE `equipments` ADD `department` VARCHAR(256) NULL AFTER `serial_number`, ADD `commission_date` DATETIME NULL AFTER `department`, ADD `supplied_by` TEXT NULL AFTER `commission_date`;
+
+CREATE TABLE `memas106`.`departments` (`id` INT NOT NULL , `oid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(256) NULL DEFAULT NULL , PRIMARY KEY (`oid`)) ENGINE = InnoDB;
+
+INSERT INTO `departments` (`id`, `oid`, `name`) VALUES ('1', NULL, 'Nursery ward'), ('2', NULL, 'Postnatal ward'), ('3', NULL, 'Labor Ward'), ('4', NULL, 'Paediatric ward'), ('5', NULL, 'Male ward'), ('6', NULL, 'Female ward'), ('6', NULL, 'TB ward'), ('7', NULL, 'Mortuary'), ('8', NULL, 'Kitchen'), ('9', NULL, 'Laundry'), ('10', NULL, 'OPD'), ('11', NULL, 'Minor theatre'), ('12', NULL, 'Operating theater'), ('13', NULL, 'Radiology'), ('14', NULL, 'Laboratory'), ('15', NULL, 'Under 5')
