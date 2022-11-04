@@ -4,6 +4,7 @@ include_once "route.php";
 
 include_once "controllers/EquipmentsController.php";
 include_once "controllers/MaintenanceLogController.php";
+include_once "controllers/DepartmentsController.php";
 
 include_once "database/migration.php";
 
@@ -73,6 +74,11 @@ switch($_SERVER['REQUEST_METHOD']){
         group_length = 5
         exceptions = 1,2,3,4,5 */
         Route::add('/maintenance-logs', function() { MaintenanceLogController::index(); });
+
+
+
+        // Gets the departments
+        Route::add('/departments', function() { DepartmentsController::index(); });
 
         break;
     case 'POST':
