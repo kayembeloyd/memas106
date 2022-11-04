@@ -5,7 +5,7 @@ include_once "database/database.php";
 class MaintenanceLog {
     public static function create($fields){
         $maintenance_log_id = Database::execute_getting_last_id(
-            "INSERT INTO id19693607_memas106.maintenance_logs (id, type, equipment_oid, equipment_id, description, created_at, updated_at)  
+            "INSERT INTO " . Database::$DATABASE_NAME . ".maintenance_logs (id, type, equipment_oid, equipment_id, description, created_at, updated_at)  
             VALUES (" . $fields['id'] . ",'" . $fields['type'] . "'," . $fields['equipment_oid'] . "," . $fields['equipment_id'] . ",'" . $fields['description'] . "','" . $fields['created_at'] . "','" . $fields['updated_at'] . "'"
             . ")" );
 
@@ -24,18 +24,18 @@ class MaintenanceLog {
 
         /// SELECT * FROM `equipments` WHERE id <> 2 AND id <> 4 AND id <> 8 LIMIT 5 OFFSET 5
         $sqlResults = Database::execute(
-            "SELECT * FROM id19693607_memas106.maintenance_logs WHERE " . $exception_statement . "LIMIT " . $group_length . " OFFSET " . ($page - 1) * $group_length
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".maintenance_logs WHERE " . $exception_statement . "LIMIT " . $group_length . " OFFSET " . ($page - 1) * $group_length
         );
 
         return $sqlResults;
     }
 
     public static function get($oid){
-        return Database::execute("SELECT * FROM `id19693607_memas106`.`maintenance_logs` WHERE oid = $oid");
+        return Database::execute("SELECT * FROM " . Database::$DATABASE_NAME . ".`maintenance_logs` WHERE oid = $oid");
     }
 
     public static function update($maintenance_log){
-        $online_maintenance_log = Database::execute("SELECT * FROM id19693607_memas106.maintenance_logs WHERE oid = $maintenance_log->oid");
+        $online_maintenance_log = Database::execute("SELECT * FROM " . Database::$DATABASE_NAME . ".maintenance_logs WHERE oid = $maintenance_log->oid");
 
         $fields = array();
 
@@ -59,7 +59,7 @@ class MaintenanceLog {
                     $fields['type'] = $maintenance_log->type;
                     $fields['updated_at'] = $maintenance_log->updated_at;
     
-                    Database::execute("UPDATE id19693607_memas106.maintenance_logs SET description = '" . $fields['description'] . "', type = '" . $fields['type'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $maintenance_log->oid);
+                    Database::execute("UPDATE " . Database::$DATABASE_NAME . ".maintenance_logs SET description = '" . $fields['description'] . "', type = '" . $fields['type'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $maintenance_log->oid);
                 
                     return self::get($online_maintenance_log_object->oid);
                 }

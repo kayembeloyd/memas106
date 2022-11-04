@@ -16,10 +16,16 @@ class EquipmentsController {
                 $modified_equipment_object = array();
                 $modified_equipment_object['id'] = $equipment_object->id;
                 $modified_equipment_object['oid'] = $equipment_object->oid;
-                $modified_equipment_object['name'] = $equipment_object->name;
-                $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
                 $modified_equipment_object['created_at'] = $equipment_object->created_at;
                 $modified_equipment_object['updated_at'] = $equipment_object->updated_at;
+                $modified_equipment_object['name'] = $equipment_object->name;
+                $modified_equipment_object['make'] = $equipment_object->make;
+                $modified_equipment_object['model'] = $equipment_object->model;
+                $modified_equipment_object['serial_number'] = $equipment_object->serial_number;
+                $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
+                $modified_equipment_object['department'] = $equipment_object->department;
+                $modified_equipment_object['commision_date'] = $equipment_object->commision_date;
+                $modified_equipment_object['supplied_by'] = $equipment_object->supplied_by;
 
                 $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
                 $technical_specifications_array = array();
@@ -59,11 +65,17 @@ class EquipmentsController {
                 $modified_equipment_object = array();
                 $modified_equipment_object['id'] = $equipment_object->id;
                 $modified_equipment_object['oid'] = $equipment_object->oid;
-                $modified_equipment_object['name'] = $equipment_object->name;
-                $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
                 $modified_equipment_object['created_at'] = $equipment_object->created_at;
                 $modified_equipment_object['updated_at'] = $equipment_object->updated_at;
-
+                $modified_equipment_object['name'] = $equipment_object->name;
+                $modified_equipment_object['make'] = $equipment_object->make;
+                $modified_equipment_object['model'] = $equipment_object->model;
+                $modified_equipment_object['serial_number'] = $equipment_object->serial_number;
+                $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
+                $modified_equipment_object['department'] = $equipment_object->department;
+                $modified_equipment_object['commission_date'] = $equipment_object->commission_date;
+                $modified_equipment_object['supplied_by'] = $equipment_object->supplied_by;
+                
                 $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
                 $technical_specifications_array = array();
                 
@@ -88,12 +100,21 @@ class EquipmentsController {
         $fields = array();
 
         $fields['id'] = isset($_POST['id']) ? $_POST['id'] : 0 ;
-        $fields['name'] = isset($_POST['name']) ? $_POST['name'] : '';
-        $fields['asset_tag'] = isset($_POST['asset_tag']) ? $_POST['asset_tag'] : '';
-        $fields['technical_specifications'] = isset($_POST['technical_specifications']) ? $_POST['technical_specifications'] : '';
         $fields['created_at'] = isset($_POST['created_at']) ? $_POST['created_at'] : '2022-10-26 04:27' ;
         $fields['updated_at'] = isset($_POST['updated_at']) ? $_POST['updated_at'] : '2022-10-26 04:27' ;
 
+        $fields['name'] = isset($_POST['name']) ? $_POST['name'] : '';
+        $fields['make'] = isset($_POST['make']) ? $_POST['make'] : '';
+        $fields['model'] = isset($_POST['model']) ? $_POST['model'] : '';
+        $fields['serial_number'] = isset($_POST['serial_number']) ? $_POST['serial_number'] : '';
+        $fields['asset_tag'] = isset($_POST['asset_tag']) ? $_POST['asset_tag'] : '';
+
+        $fields['department'] = isset($_POST['department']) ? $_POST['department'] : '';
+        $fields['commission_date'] = isset($_POST['commission_date']) ? $_POST['commission_date'] : '';
+        $fields['supplied_by'] = isset($_POST['supplied_by']) ? $_POST['supplied_by'] : '';
+
+        $fields['technical_specifications'] = isset($_POST['technical_specifications']) ? $_POST['technical_specifications'] : '';
+        
         $status = Equipment::create($fields);
 
         $response = array();
@@ -120,11 +141,17 @@ class EquipmentsController {
                 
                 $modified_equipment_object = array();
                 $modified_equipment_object['id'] = $equipment->id;
-                $modified_equipment_object['oid'] = $update_result_object->oid;
-                $modified_equipment_object['name'] = $update_result_object->name;
-                $modified_equipment_object['asset_tag'] = $update_result_object->asset_tag;
-                $modified_equipment_object['created_at'] = $update_result_object->created_at;
-                $modified_equipment_object['updated_at'] = $update_result_object->updated_at;
+                $modified_equipment_object['oid'] = $equipment->oid;
+                $modified_equipment_object['created_at'] = $equipment->created_at;
+                $modified_equipment_object['updated_at'] = $equipment->updated_at;
+                $modified_equipment_object['name'] = $equipment->name;
+                $modified_equipment_object['make'] = $equipment->make;
+                $modified_equipment_object['model'] = $equipment->model;
+                $modified_equipment_object['serial_number'] = $equipment->serial_number;
+                $modified_equipment_object['asset_tag'] = $equipment->asset_tag;
+                $modified_equipment_object['department'] = $equipment->department;
+                $modified_equipment_object['commission_date'] = $equipment->commission_date;
+                $modified_equipment_object['supplied_by'] = $equipment->supplied_by;
                 
                 $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
                 $technical_specifications_array = array();

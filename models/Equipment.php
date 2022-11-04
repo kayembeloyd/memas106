@@ -5,9 +5,30 @@ include_once "database/database.php";
 class Equipment {
     public static function create($fields){
         $equipment_id = Database::execute_getting_last_id(
-                "INSERT INTO id19693607_memas106.equipments (id, name, asset_tag, created_at, updated_at)  
-                VALUES (" . $fields['id'] . ",'" . $fields['name'] . "','" . $fields['asset_tag']."','" . $fields['created_at'] . "','" . $fields['updated_at'] . "'"
-                . ")" );
+                "INSERT INTO " . Database::$DATABASE_NAME . ".equipments 
+                (id, 
+                name, 
+                make, 
+                model, 
+                serial_number, 
+                asset_tag, 
+                department, 
+                commission_date, 
+                supplied_by, 
+                created_at, 
+                updated_at)  
+                VALUES (" 
+                . $fields['id'] . "," 
+                . "'" . $fields['name'] . "'," 
+                . "'" . $fields['make'] . "',"
+                . "'" . $fields['model'] . "',"
+                . "'" . $fields['serial_number'] . "',"
+                . "'" . $fields['asset_tag']. "',"
+                . "'" . $fields['department'] . "',"
+                . "'" . $fields['commission_date'] . "',"
+                . "'" . $fields['supplied_by'] . "'," 
+                . "'" . $fields['created_at'] . "'," 
+                . "'" . $fields['updated_at'] . "')");
 
         $technical_specification_json = json_decode($fields['technical_specifications']);
 
@@ -16,7 +37,7 @@ class Equipment {
 
         foreach ($technical_specification_json as $technical_specification_json_object) {
             $technical_specification_creation_sql_statement = 
-                "INSERT INTO id19693607_memas106.technical_specifications (equipment_id, specification_name, specification_value) 
+                "INSERT INTO " . Database::$DATABASE_NAME . ".technical_specifications (equipment_id, specification_name, specification_value) 
                 VALUES (" . $equipment_id . ",'" . $technical_specification_json_object->specification_name . "','" . $technical_specification_json_object->specification_value . "'" . 
                 ")";
 
@@ -38,26 +59,26 @@ class Equipment {
 
         /// SELECT * FROM `equipments` WHERE id <> 2 AND id <> 4 AND id <> 8 LIMIT 5 OFFSET 5
         $sqlResults = Database::execute(
-            "SELECT * FROM id19693607_memas106.equipments WHERE " . $exception_statement . "LIMIT " . $group_length . " OFFSET " . ($page - 1) * $group_length
+            "SELECT * FROM " . Database::$DATABASE_NAME . ".equipments WHERE " . $exception_statement . "LIMIT " . $group_length . " OFFSET " . ($page - 1) * $group_length
         );
 
         return $sqlResults;
     }
 
     public static function getTechnicalSpecification($oid){
-        return Database::execute("SELECT * FROM id19693607_memas106.technical_specifications WHERE equipment_id = $oid");
+        return Database::execute("SELECT * FROM " . Database::$DATABASE_NAME . ".technical_specifications WHERE equipment_id = $oid");
     }
 
     public static function get($oid){
-        return Database::execute("SELECT * FROM `id19693607_memas106`.`equipments` WHERE oid = $oid");
+        return Database::execute("SELECT * FROM " . Database::$DATABASE_NAME . ".`equipments` WHERE oid = $oid");
     }
 
     public static function getAssetTag($asset_tag){
-        return Database::execute("SELECT * FROM `id19693607_memas106`.`equipments` WHERE asset_tag = '$asset_tag'");
+        return Database::execute("SELECT * FROM " . Database::$DATABASE_NAME . ".`equipments` WHERE asset_tag = '$asset_tag'");
     }
 
     public static function update($equipment){
-        $online_equipment = Database::execute("SELECT * FROM id19693607_memas106.equipments WHERE oid = $equipment->oid");
+        $online_equipment = Database::execute("SELECT * FROM " . Database::$DATABASE_NAME . ".equipments WHERE oid = $equipment->oid");
 
         $fields = array();
 
@@ -80,12 +101,12 @@ class Equipment {
                     $fields['updated_at'] = $equipment->updated_at;
                     $fields['technical_specifications'] = $equipment->technical_specifications;
     
-                    Database::execute("UPDATE id19693607_memas106.equipments SET name = '" . $fields['name'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $equipment->oid);
+                    Database::execute("UPDATE " . Database::$DATABASE_NAME . ".equipments SET name = '" . $fields['name'] . "', updated_at = '" . $fields['updated_at'] . "' WHERE oid = " . $equipment->oid);
                 
                     
                     // Updating the technical specifications
                     foreach ($fields['technical_specifications'] as $technical_specification) {
-                        Database::execute("UPDATE id19693607_memas106.technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WHERE id = " . $technical_specification->id);
+                        Database::execute("UPDATE " . Database::$DATABASE_NAME . ".technical_specifications SET specification_name = '" . $technical_specification->specification_name . "', specification_value = '" . $technical_specification->specification_value . "' WHERE id = " . $technical_specification->id);
                     }
                     
                     return self::get($online_equipment_object->oid);
