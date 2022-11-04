@@ -24,7 +24,7 @@ class EquipmentsController {
                 $modified_equipment_object['serial_number'] = $equipment_object->serial_number;
                 $modified_equipment_object['asset_tag'] = $equipment_object->asset_tag;
                 $modified_equipment_object['department'] = $equipment_object->department;
-                $modified_equipment_object['commision_date'] = $equipment_object->commision_date;
+                $modified_equipment_object['commission_date'] = $equipment_object->commission_date;
                 $modified_equipment_object['supplied_by'] = $equipment_object->supplied_by;
 
                 $technical_specifications = Equipment::getTechnicalSpecification($modified_equipment_object['oid']);
