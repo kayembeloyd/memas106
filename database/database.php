@@ -1,21 +1,20 @@
 <?php 
 
 class Database {
-    /*
 
     public static $servername = "localhost";
-    public static $username = "id19693607_memas";
-    public static $password = "2S9Ahy_@(EyFZgde";
+    public static $username = "id19693607_lkayembe";
+    public static $password = "{&QU)vlSQ}q=qMs5";
 
-    public static $DATABASE_NAME = "id19693607_memas106";
+    public static $DATABASE_NAME = "id19693607_mem106";
     
-    */
 
+    /*
     public static $servername = "localhost";
     public static $username = "root";
     public static $password = "";
 
-    public static $DATABASE_NAME = "memas106";
+    public static $DATABASE_NAME = "memas106";*/
     
 
     public static function checkConnection(){
